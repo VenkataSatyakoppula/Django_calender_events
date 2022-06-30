@@ -1,0 +1,39 @@
+{% extends 'index.html' %} 
+
+{% block body %}
+
+
+<h2 class="display-3 mt-3 mb-3">Events List</h2>
+<table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">Email</th>
+        <td>{{data.summary}}</td>
+      </tr>
+    </tbody>
+  </table>
+<a href="{%url 'revoke'%}" class="btn btn-danger mb-3">Revoke token (expires in 10min)</a>
+
+<div class="d-flex flex-wrap">
+  {% for index in data.items %}
+  <div class="card mx-2 my-2" style="width: 22rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{index.summary}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Created :- {{index.created}}</h6>
+      <p class="card-text">{{index.description}}</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Creator:- {{index.creator.displayName}}</li>
+        <li class="list-group-item">Organizer :- {{index.organizer.displayName}}</li>
+
+        <li class="list-group-item">Location :- {{index.location}}</li>
+      </ul>
+      <a href="{{index.htmlLink}}" target="_blank" class="btn btn-primary">More Info</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+
+{% endblock body %}
